@@ -1,4 +1,3 @@
-// types/index.ts
 export interface TimesheetEntry {
   id: string;
   weekNumber: number;
