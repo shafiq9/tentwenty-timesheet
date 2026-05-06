@@ -10,8 +10,9 @@ declare global {
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await context.params;
   const session = await getServerSession(authOptions);
   
   if (!session) {
@@ -24,7 +25,7 @@ export async function PUT(
   try {
     const body: UpdateTimesheetDTO = await request.json();
     const timesheets = global.timesheets || [];
-    const index = timesheets.findIndex(ts => ts.id === params.id);
+    const index = timesheets.findIndex(ts => ts.id === id);
     
     if (index === -1) {
       return NextResponse.json(
@@ -54,8 +55,9 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await context.params;
   const session = await getServerSession(authOptions);
   
   if (!session) {
@@ -66,7 +68,7 @@ export async function DELETE(
   }
 
   const timesheets = global.timesheets || [];
-  const index = timesheets.findIndex(ts => ts.id === params.id);
+  const index = timesheets.findIndex(ts => ts.id === id);
   
   if (index === -1) {
     return NextResponse.json(

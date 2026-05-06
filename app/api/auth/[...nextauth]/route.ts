@@ -1,4 +1,4 @@
-import NextAuth from 'next-auth';
+import NextAuth, { type Session } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
 export const authOptions = {
@@ -27,12 +27,12 @@ export const authOptions = {
     }),
   ],
   session: {
-    strategy: 'jwt',
+    strategy: 'jwt' as const,
   },
   callbacks: {
-    async session({ session, token }) {
+    async session({ session, token }: { session: Session; token: any }) {
       if (session.user) {
-        session.user.id = token.sub;
+        (session.user as any).id = token.sub;
       }
       return session;
     },

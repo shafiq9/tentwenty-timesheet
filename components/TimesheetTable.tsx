@@ -98,7 +98,7 @@ export default function TimesheetTable({ timesheets, onEdit, onDelete }: Timeshe
                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                   <button
                     onClick={() => onEdit(entry)}
-                    className="text-primary-600 hover:text-primary-900 mr-3"
+                    className="text-blue-600 hover:text-blue-900 mr-3"
                   >
                     <PencilIcon className="h-4 w-4" />
                   </button>
