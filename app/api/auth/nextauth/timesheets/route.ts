@@ -3,8 +3,12 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '../../[...nextauth]/route';
 import { TimesheetEntry, CreateTimesheetDTO, ApiResponse } from '@/types';
 
-// In-memory storage (replace with database in production)
-let timesheets: TimesheetEntry[] = [];
+declare global {
+  var timesheets: TimesheetEntry[] | undefined;
+}
+
+const timesheets: TimesheetEntry[] = global.timesheets || [];
+global.timesheets = timesheets;
 
 // Helper to generate mock data
 function generateMockData() {

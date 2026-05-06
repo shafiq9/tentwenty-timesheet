@@ -3,9 +3,8 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '../../../[...nextauth]/route';
 import { UpdateTimesheetDTO, ApiResponse, TimesheetEntry } from '@/types';
 
-// In-memory storage reference
 declare global {
-  var timesheets: TimesheetEntry[];
+  var timesheets: TimesheetEntry[] | undefined;
 }
 
 export async function PUT(
