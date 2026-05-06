@@ -30,7 +30,7 @@ export default function DashboardPage() {
 
   const fetchTimesheets = async () => {
     try {
-      const response = await fetch('/api/timesheets');
+      const response = await fetch('/api/auth/nextauth/timesheets');
       const result = await response.json();
       if (result.success && result.data) {
         setTimesheets(result.data);
@@ -55,7 +55,7 @@ export default function DashboardPage() {
   const handleDelete = async (id: string) => {
     if (confirm('Are you sure you want to delete this timesheet entry?')) {
       try {
-        const response = await fetch(`/api/timesheets/${id}`, {
+        const response = await fetch(`/api/auth/nextauth/timesheets/${id}`, {
           method: 'DELETE',
         });
         const result = await response.json();

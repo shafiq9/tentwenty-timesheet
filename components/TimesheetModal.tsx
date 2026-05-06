@@ -75,8 +75,8 @@ export default function TimesheetModal({
   const onSubmit = async (data: TimesheetFormData) => {
     try {
       const url = editingEntry
-        ? `/api/timesheets/${editingEntry.id}`
-        : '/api/timesheets';
+        ? `/api/auth/nextauth/timesheets/${editingEntry.id}`
+        : '/api/auth/nextauth/timesheets';
       const method = editingEntry ? 'PUT' : 'POST';
 
       const response = await fetch(url, {
