@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '../../auth/[...nextauth]/route';
+import { authOptions } from '../[...nextauth]/route';
 import { UpdateTimesheetDTO, ApiResponse, TimesheetEntry } from '@/types';
 
 // In-memory storage reference
